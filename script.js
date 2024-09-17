@@ -22,8 +22,9 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-  let humanChoice = getHumanChoice();
-  let computerChoice = getComputerChoice();
+  console.log(
+    `You chose ${humanChoice} and the computer chose ${computerChoice}.`
+  );
   if (roundCount < 5) {
     switch (humanChoice) {
       case 'rock':
