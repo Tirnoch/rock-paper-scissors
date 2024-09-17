@@ -1,105 +1,42 @@
-function getComputerChoice() {
-  const computerChoice = Math.random();
-  if (computerChoice < 0.34) {
-    computerChoice = 'rock';
-  } else if (computerChoice < 0.67) {
-    computerChoice = 'paper';
-  } else {
-    computerChoice = 'scissors';
-  }
-  return computerChoice;
-}
 function getHumanChoice() {
-  const humanChoice = prompt('Rock, Paper or Scissors?');
+  humanSelection = prompt('Rock, Paper or Scissors?').toLowerCase();
+
   if (
-    humanChoice.toLowerCase() != 'rock' &&
-    humanChoice.toLowerCase() != 'paper' &&
-    humanChoice.toLowerCase() != 'scissors'
+    humanSelection === 'rock' ||
+    humanSelection === 'paper' ||
+    humanSelection === 'scissors'
   ) {
+    return humanSelection;
+  } else {
+    alert('Please enter rock, paper or scissors');
     return getHumanChoice();
   }
-  return humanChoice;
+}
+function getComputerChoice() {
+  const choices = ['rock', 'paper', 'scissors'];
+  const randomNumber = Math.floor(Math.random() * 3);
+  return choices[randomNumber];
 }
 
 function playRound(humanChoice, computerChoice) {
-  console.log(
-    `You chose ${humanChoice} and the computer chose ${computerChoice}.`
-  );
-  if (roundCount < 5) {
-    playRound();
-    switch (humanChoice) {
-      case 'rock':
-        switch (computerChoice) {
-          case 'rock':
-            console.log('Draw. Score is ${humanScore}:${computerScore}');
-            break;
-          case 'paper':
-            console.log(
-              'You lose, paper beats rock. Score is ${humanScore}:${computerScore}'
-            );
-            computerScore++;
-            roundCount++;
-            break;
-          case 'scissors':
-            console.log(
-              'You win, rock beats scissors. Score is ${humanScore}:${computerScore}'
-            );
-            humanScore++;
-            roundCount++;
-            break;
-        }
-      case 'paper':
-        switch (computerChoice) {
-          case 'rock':
-            console.log(
-              'You win, paper beats rock. Score is ${humanScore}:${computerScore}'
-            );
-            humanScore++;
-            roundCount++;
-            break;
-          case 'paper':
-            console.log('Draw. Score is ${humanScore}:${computerScore}');
-            break;
-          case 'scissors':
-            console.log(
-              'You lose, scissors beats paper. Score is ${humanScore}:${computerScore}'
-            );
-            computerScore++;
-            roundCount++;
-            break;
-        }
-      case 'scissors':
-        switch (computerChoice) {
-          case 'rock':
-            console.log(
-              'You lose, rock beats scissors. Score is ${humanScore}:${computerScore}'
-            );
-            computerScore++;
-            roundCount++;
-            break;
-          case 'paper':
-            console.log(
-              'You win, scissors beats paper. Score is ${humanScore}:${computerScore}'
-            );
-            humanScore++;
-            roundCount++;
-            break;
-          case 'scissors':
-            console.log('Draw. Score is ${humanScore}:${computerScore}');
-            break;
-        }
-        break;
-      default:
-        break;
-    }
-  } else if (roundCount === 5) {
-    console.log('Game over. Final score is ${humanScore}:${computerScore}');
+  if (roundCount === 5) {
+    alert('Game Over! Score is ${humanScore} - ${computerScore}');
+  } else if (humanChoice === computerChoice) {
+    alert("It's a tie! Score is ${humanScore} - ${computerScore}");
+  } else if (humanChoice === 'rock' && computerChoice === 'scissors') {
+    alert('You win! Score is ${humanScore} - ${computerScore}');
+  } else if (humanChoice === 'paper' && computerChoice === 'rock') {
+    alert('You win! Score is ${humanScore} - ${computerScore}');
+  } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
+    alert('You win! Score is ${humanScore} - ${computerScore}');
+  } else {
+    alert('You lose! Score is ${humanScore} - ${computerScore}');
   }
 }
+
 let humanScore = 0;
 let computerScore = 0;
 let roundCount = 0;
-
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
