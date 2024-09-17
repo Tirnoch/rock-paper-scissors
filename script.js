@@ -26,6 +26,7 @@ function playRound(humanChoice, computerChoice) {
     `You chose ${humanChoice} and the computer chose ${computerChoice}.`
   );
   if (roundCount < 5) {
+    playRound();
     switch (humanChoice) {
       case 'rock':
         switch (computerChoice) {
