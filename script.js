@@ -18,39 +18,56 @@ function getComputerChoice() {
   return choices[randomNumber];
 }
 function playRound(humanChoice, computerChoice) {
-  if (humanScore + computerScore === 5) {
-    alert(`Game over! ${humanScore} - ${computerScore}`);
-    humanScore = 0;
-    computerScore = 0;
-    return;
-  } else if (humanChoice === computerChoice) {
-    alert(`It's a tie! Score is ${humanScore} - ${computerScore}`);
-    playRound(humanChoice, computerChoice);
+  if (humanChoice === computerChoice) {
+    return 'tie';
   } else if (
     (humanChoice === 'rock' && computerChoice === 'scissors') ||
-    (humanChoice === 'paper' && computerChoice === 'rock') ||
-    (humanChoice === 'scissors' && computerChoice === 'paper')
+    (humanChoice === 'scissors' && computerChoice === 'paper') ||
+    (humanChoice === 'paper' && computerChoice === 'rock')
   ) {
-    humanScore++;
-    alert(
-      `You win! ${humanChoice} beats ${computerChoice}! Score is ${humanScore} - ${computerScore}`
-    );
-    playRound(humanChoice, computerChoice);
-  } else if (
-    (humanChoice === 'rock' && computerChoice === 'paper') ||
-    (humanChoice === 'paper' && computerChoice === 'scissors') ||
-    (humanChoice === 'scissors' && computerChoice === 'rock')
-  ) {
-    computerScore++;
-    alert(
-      `You lose! ${computerChoice} beats ${humanChoice}! Score is ${humanScore} - ${computerScore}`
-    );
-    playRound(humanChoice, computerChoice);
+    return 'win';
+  } else {
+    return 'lose';
   }
 }
+
 let humanScore = 0;
 let computerScore = 0;
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
-playRound(humanSelection, computerSelection);
+function playGame() {
+  const humanSelection = getHumanChoice();
+  const computerSelection = getComputerChoice();
+  result = playRound(humanSelection, computerSelection);
+  if (result === 'win') {
+    humanScore++;
+    if (humanScore + computerScore === 5) {
+      alert(
+        `Game over! Final score is You: ${humanScore} - Computer: ${computerScore}`
+      );
+      return;
+    } else {
+      alert(
+        `You win! ${humanSelection} beats ${computerSelection}.\nScore is You: ${humanScore} - Computer: ${computerScore}`
+      );
+      playGame();
+    }
+  } else if (result === 'lose') {
+    computerScore++;
+    if (humanScore + computerScore === 5) {
+      alert(
+        `Game over! Final score is You: ${humanScore} - Computer: ${computerScore}`
+      );
+      return;
+    } else {
+      alert(
+        `Computer wins! ${computerSelection} beats ${humanSelection}.\nScore is You: ${humanScore} - Computer: ${computerScore}`
+      );
+      playGame();
+    }
+  } else {
+    alert(
+      `It's a tie. You both picked ${humanSelection}.\nScore is You: ${humanScore} - Computer: ${computerScore}`
+    );
+    playGame();
+  }
+}
+playGame();
