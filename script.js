@@ -19,18 +19,43 @@ function getComputerChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+  if (humanChoice === computerChoice) {
+    alert(`It's a tie! You both chose ${humanChoice}`);
+  } else if (
+    (humanChoice === 'rock' && computerChoice === 'scissors') ||
+    (humanChoice === 'paper' && computerChoice === 'rock') ||
+    (humanChoice === 'scissors' && computerChoice === 'paper')
+  ) {
+    humanScore++;
+    roundCount++;
+    alert(
+      `You win! ${humanChoice} beats ${computerChoice}. Score is ${humanScore} : ${computerScore}`
+    );
+  } else if (
+    (humanChoice === 'rock' && computerChoice === 'paper') ||
+    (humanChoice === 'paper' && computerChoice === 'scissors') ||
+    (humanChoice === 'scissors' && computerChoice === 'rock')
+  ) {
+    computerScore++;
+    roundCount++;
+    alert(
+      `You lose! ${computerChoice} beats ${humanChoice}. Score is ${humanScore} : ${computerScore}`
+    );
+  }
   if (roundCount === 5) {
-    alert('Game Over! Score is ${humanScore} - ${computerScore}');
-  } else if (humanChoice === computerChoice) {
-    alert("It's a tie! Score is ${humanScore} - ${computerScore}");
-  } else if (humanChoice === 'rock' && computerChoice === 'scissors') {
-    alert('You win! Score is ${humanScore} - ${computerScore}');
-  } else if (humanChoice === 'paper' && computerChoice === 'rock') {
-    alert('You win! Score is ${humanScore} - ${computerScore}');
-  } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
-    alert('You win! Score is ${humanScore} - ${computerScore}');
-  } else {
-    alert('You lose! Score is ${humanScore} - ${computerScore}');
+    if (humanScore > computerScore) {
+      alert(`You won the game! Score is ${humanScore} : ${computerScore}`);
+    } else if (humanScore < computerScore) {
+      alert(`You lost the game! Score is ${humanScore} : ${computerScore}`);
+    } else {
+      alert(`The game is a tie! Score is ${humanScore} : ${computerScore}`);
+    }
+    humanScore = 0;
+    computerScore = 0;
+    roundCount = 0;
+  }
+  if (roundCount < 5) {
+    playRound(humanChoice, computerChoice);
   }
 }
 
