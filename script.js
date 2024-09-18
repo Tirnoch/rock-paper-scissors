@@ -25,7 +25,7 @@ function playRound(humanChoice, computerChoice) {
     return;
   } else if (humanChoice === computerChoice) {
     alert(`It's a tie! Score is ${humanScore} - ${computerScore}`);
-    playRound();
+    playRound(humanChoice, computerChoice);
   } else if (
     (humanChoice === 'rock' && computerChoice === 'scissors') ||
     (humanChoice === 'paper' && computerChoice === 'rock') ||
@@ -35,7 +35,7 @@ function playRound(humanChoice, computerChoice) {
     alert(
       `You win! ${humanChoice} beats ${computerChoice}! Score is ${humanScore} - ${computerScore}`
     );
-    playRound();
+    playRound(humanChoice, computerChoice);
   } else if (
     (humanChoice === 'rock' && computerChoice === 'paper') ||
     (humanChoice === 'paper' && computerChoice === 'scissors') ||
@@ -45,7 +45,7 @@ function playRound(humanChoice, computerChoice) {
     alert(
       `You lose! ${computerChoice} beats ${humanChoice}! Score is ${humanScore} - ${computerScore}`
     );
-    playRound();
+    playRound(humanChoice, computerChoice);
   }
 }
 let humanScore = 0;
