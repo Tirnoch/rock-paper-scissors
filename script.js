@@ -44,21 +44,22 @@ let humanScore = 0;
 let computerScore = 0;
 
 const rock = document.createElement('button');
-rock.innerHTML = 'Rock';
+rock.innerText = '✊🏻';
 rock.id = 'rock';
 rock.addEventListener('click', (e) => {
   playRound(e.target.id, getComputerChoice());
 });
 
 const paper = document.createElement('button');
-paper.innerHTML = 'Paper';
+paper.innerText = '✋🏻';
 paper.id = 'paper';
+paper.style.setProperty('backgroundColor', 'black');
 paper.addEventListener('click', (e) => {
   playRound(e.target.id, getComputerChoice());
 });
 
 const scissors = document.createElement('button');
-scissors.innerHTML = 'Scissors';
+scissors.innerText = '✌🏻';
 scissors.id = 'scissors';
 scissors.addEventListener('click', (e) => {
   playRound(e.target.id, getComputerChoice());
