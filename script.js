@@ -19,55 +19,49 @@ function getComputerChoice() {
 }
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
+    console.log(`You both choose ${humanChoice}.It's a tie`);
     return 'tie';
   } else if (
     (humanChoice === 'rock' && computerChoice === 'scissors') ||
     (humanChoice === 'scissors' && computerChoice === 'paper') ||
     (humanChoice === 'paper' && computerChoice === 'rock')
   ) {
+    console.log(`${humanChoice} beats ${computerChoice}. You win`);
     return 'win';
   } else {
+    console.log(`${computerChoice} beats ${humanChoice}. You lose`);
     return 'lose';
   }
 }
 
 let humanScore = 0;
 let computerScore = 0;
-function playGame() {
-  const humanSelection = getHumanChoice();
-  const computerSelection = getComputerChoice();
-  result = playRound(humanSelection, computerSelection);
-  if (result === 'win') {
-    humanScore++;
-    if (humanScore + computerScore === 5) {
-      alert(
-        `Game over! Final score is You: ${humanScore} - Computer: ${computerScore}`
-      );
-      return;
-    } else {
-      alert(
-        `You win! ${humanSelection} beats ${computerSelection}.\nScore is You: ${humanScore} - Computer: ${computerScore}`
-      );
-      playGame();
-    }
-  } else if (result === 'lose') {
-    computerScore++;
-    if (humanScore + computerScore === 5) {
-      alert(
-        `Game over! Final score is You: ${humanScore} - Computer: ${computerScore}`
-      );
-      return;
-    } else {
-      alert(
-        `Computer wins! ${computerSelection} beats ${humanSelection}.\nScore is You: ${humanScore} - Computer: ${computerScore}`
-      );
-      playGame();
-    }
-  } else {
-    alert(
-      `It's a tie. You both picked ${humanSelection}.\nScore is You: ${humanScore} - Computer: ${computerScore}`
-    );
-    playGame();
-  }
-}
-playGame();
+
+const rock = document.createElement('button');
+rock.innerHTML = 'Rock';
+rock.id = 'rock';
+rock.addEventListener('click', (e) => {
+  playRound(e.target.id, getComputerChoice());
+});
+
+const paper = document.createElement('button');
+paper.innerHTML = 'Paper';
+paper.id = 'paper';
+paper.addEventListener('click', (e) => {
+  playRound(e.target.id, getComputerChoice());
+});
+
+const scissors = document.createElement('button');
+scissors.innerHTML = 'Scissors';
+scissors.id = 'scissors';
+scissors.addEventListener('click', (e) => {
+  playRound(e.target.id, getComputerChoice());
+});
+
+const buttons = document.createElement('div');
+buttons.setAttribute('id', 'buttons');
+
+buttons.appendChild(rock);
+buttons.appendChild(paper);
+buttons.appendChild(scissors);
+document.body.appendChild(buttons);
