@@ -1,17 +1,17 @@
-function getHumanChoice() {
-  humansPick = prompt('Rock, Paper or Scissors?').toLowerCase();
+// function getHumanChoice() {
+//   humansPick = prompt('Rock, Paper or Scissors?').toLowerCase();
 
-  if (
-    humansPick === 'rock' ||
-    humansPick === 'paper' ||
-    humansPick === 'scissors'
-  ) {
-    return humansPick;
-  } else {
-    alert('Please enter rock, paper or scissors');
-    return getHumanChoice();
-  }
-}
+//   if (
+//     humansPick === 'rock' ||
+//     humansPick === 'paper' ||
+//     humansPick === 'scissors'
+//   ) {
+//     return humansPick;
+//   } else {
+//     alert('Please enter rock, paper or scissors');
+//     return getHumanChoice();
+//   }
+// }
 function getComputerChoice() {
   const choices = ['rock', 'paper', 'scissors'];
   const randomNumber = Math.floor(Math.random() * 3);
