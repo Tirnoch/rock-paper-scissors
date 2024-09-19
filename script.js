@@ -17,20 +17,26 @@ function getComputerChoice() {
   const randomNumber = Math.floor(Math.random() * 3);
   return choices[randomNumber];
 }
+const result = document.createElement('label');
+result.setAttribute('id', 'label');
+
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
-    console.log(`You both choose ${humanChoice}.It's a tie`);
-    return 'tie';
+    // console.log(`You both choose ${humanChoice}.It's a tie`);
+    result.innerText = `You both choose ${humanChoice}. It's a tie`;
+    // return 'tie';
   } else if (
     (humanChoice === 'rock' && computerChoice === 'scissors') ||
     (humanChoice === 'scissors' && computerChoice === 'paper') ||
     (humanChoice === 'paper' && computerChoice === 'rock')
   ) {
-    console.log(`${humanChoice} beats ${computerChoice}. You win`);
-    return 'win';
+    // console.log(`${humanChoice} beats ${computerChoice}. You win`);
+    result.innerText = `${humanChoice} beats ${computerChoice}. You win`;
+    // return 'win';
   } else {
-    console.log(`${computerChoice} beats ${humanChoice}. You lose`);
-    return 'lose';
+    // console.log(`${computerChoice} beats ${humanChoice}. You lose`);
+    result.innerText = `${computerChoice} beats ${humanChoice}. You lose`;
+    // return 'lose';
   }
 }
 
@@ -65,3 +71,4 @@ buttons.appendChild(rock);
 buttons.appendChild(paper);
 buttons.appendChild(scissors);
 document.body.appendChild(buttons);
+document.body.appendChild(result);
